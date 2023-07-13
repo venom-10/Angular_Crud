@@ -1,11 +1,11 @@
 'use strict'
 const express = require('express');
-const userAuthDb = require('./db/userAuthDb')
 
 const app = express();
 const PORT = 3000 || process.env.PORT;
 
-userAuthDb.connectToMySql();
+
+
 app.use(express.json());
 
 // For checking

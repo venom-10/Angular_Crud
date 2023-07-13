@@ -1,15 +1,19 @@
-const mysql = require('mysql')
+const Sequelize = require('sequelize');
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'Root@123',
-  database: 'angular_crud'
+const sequelize = new Sequelize('angular_crud', 'root', 'Root@123', {
+  dialect:'mysql'
 })
 
-
-
-const connectToMySql = () => {
-  connection.connect();
+const connect = async ()=>{
+  try{
+    await sequelize.authenticate();
+    console.log('connection succesfull');
+  }
+  catch(err){
+    console.log(err);
+  }
 }
-module.exports = { connection, connectToMySql }
+module.exports = {
+  connect,
+  sequelize
+}
