@@ -10,7 +10,6 @@ import { TableDataComponent } from './components/table-data/table-data.component
 import { CreateComponent } from './pages/create/create.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MainTableComponent } from './pages/main-table/main-table.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,13 +19,10 @@ import { MainTableComponent } from './pages/main-table/main-table.component';
     TableDataComponent,
     CreateComponent,
     LoginComponent,
-    MainTableComponent
+    MainTableComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
