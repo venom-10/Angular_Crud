@@ -1,5 +1,5 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const { sequelize } = require('../db/userAuthDb');
+const { sequelize } = require('../db/db');
 
 const userAuth = sequelize.define('userAuth', {
     id: {
@@ -14,7 +14,7 @@ const userAuth = sequelize.define('userAuth', {
     email: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique:true
+        unique: true
     },
     password: {
         type: DataTypes.STRING,

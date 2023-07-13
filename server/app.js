@@ -9,11 +9,13 @@ const PORT = 3000 || process.env.PORT;
 app.use(express.json());
 
 // For checking
-app.get('/', (req, res)=>{
+app.get('/', (req, res) => {
     res.send('Hello from app.js');
 })
 
 app.use('/user', require('./router/userAuth'));
+
+app.use('/userData', require('./router/userData'));
 
 
 app.listen(3000, function () {
