@@ -5,11 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavComponent } from './components/nav/nav.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileComponent } from './partials/profile/profile.component';
 import { TableDataComponent } from './components/table-data/table-data.component';
 import { CreateComponent } from './pages/create/create.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MainTableComponent } from './pages/main-table/main-table.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { UpdateUserComponent } from './pages/update-user/update-user.component';
+import { SearchUserComponent } from './pages/search-user/search-user.component';
+import { ManipulateNavComponent } from './partials/manipulate-nav/manipulate-nav.component';
+import { SearchComponent } from './partials/search/search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +25,11 @@ import { MainTableComponent } from './pages/main-table/main-table.component';
     CreateComponent,
     LoginComponent,
     MainTableComponent,
+    RegisterComponent,
+    UpdateUserComponent,
+    SearchUserComponent,
+    ManipulateNavComponent,
+    SearchComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
