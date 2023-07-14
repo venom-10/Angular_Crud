@@ -3,6 +3,35 @@ const router = express.Router();
 const userData = require('../Models/userData');
 
 
+// get all Data
+router.get('/allData', async (req, res) => {
+    const page = req.query.page;
+    try {
+        const users = await userData.findAll({ offset: (page - 1) * 4, limit: 4 });
+        const Data = JSON.stringify(users, null, 2);
+        return res.status(200).send(Data);
+    }
+    catch (err) {
+        console.log(err);
+        return res.status(500).send('There is an error in Database');
+    }
+})
+
+// get searched Data
+router.get('/search', async (req, res) => {
+    const name = req.query.name;
+    const page = req.query.page;
+    try {
+        const users = await userData.findAll({ where: { name }, offset: (page - 1) * 4, limit: 4 });
+        const searchedUsers = JSON.stringify(users, null, 2);
+        return res.status(200).send(searchedUsers);
+    }
+    catch (err) {
+        console.log(err);
+        return res.status(500).send('There is an error in Database');
+    }
+})
+
 //  adding user data into database
 router.post('/add', async (req, res) => {
     const { name, email, gender, address, state, dob } = req.body;
@@ -45,6 +74,8 @@ router.get('/delete', async (req, res) => {
         return res.status(500).send('There is an error in Database');
     }
 })
+
+
 
 
 
