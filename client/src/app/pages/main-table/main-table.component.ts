@@ -12,6 +12,8 @@ export class MainTableComponent implements OnInit {
 
   constructor(private usersDataService: UserDataService) {}
   ngOnInit(): void {
-    this.usersData = this.usersDataService.getUserData();
+    this.usersDataService.getUserData().subscribe((usersData) => {
+      this.usersData = usersData;
+    });
   }
 }

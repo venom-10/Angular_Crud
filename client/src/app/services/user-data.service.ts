@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { data } from 'src/data';
 
@@ -5,38 +6,10 @@ import { data } from 'src/data';
   providedIn: 'root',
 })
 export class UserDataService {
-  usersData: data[] = [
-    {
-      name: 'Rohit',
-      email: 'arohit0102@gmail.com',
-      gender: 'Male',
-      state: 'West Bengal',
-      address: 'Kolkata',
-      dob: '01/02/2000',
-      image: '',
-    },
-    {
-      name: 'Aftab',
-      email: 'arohit0102@gmail.com',
-      gender: 'Male',
-      state: 'West Bengal',
-      address: 'Kolkata',
-      dob: '01/02/2000',
-      image: '',
-    },
-    {
-      name: 'Rion',
-      email: 'arohit0102@gmail.com',
-      gender: 'Male',
-      state: 'West Bengal',
-      address: 'Kolkata',
-      dob: '01/02/2000',
-      image: '',
-    },
-  ];
-  constructor() {}
+  usersData: data[] = [];
+  constructor(private http: HttpClient) {}
 
   getUserData() {
-    return this.usersData;
+    return this.http.get<data[]>('api/userdata/allData');
   }
 }
