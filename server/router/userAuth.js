@@ -8,6 +8,7 @@ const userAuth = require('../Models/userAuth');
 
 
 const connect = userAuthDb.connect;
+
 router.post('/register', async (req, res) => {
     const { name, email, password } = req.body;
 
@@ -22,7 +23,6 @@ router.post('/register', async (req, res) => {
     const salt = bcrypt.genSaltSync(10);
     const hashPassword = bcrypt.hashSync(password, salt);
     try {
-        console.log(hashPassword);
         const user = await userAuth.create({ name, email, password: hashPassword });
         return res.status(201).send('User Created Successfully');
     }

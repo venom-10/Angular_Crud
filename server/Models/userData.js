@@ -34,7 +34,7 @@ const userData = sequelize.define('userData', {
     },
     imagepath: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
 })
 

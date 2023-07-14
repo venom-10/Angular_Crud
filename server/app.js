@@ -13,9 +13,9 @@ app.get('/', (req, res) => {
     res.send('Hello from app.js');
 })
 
-app.use('/user', require('./router/userAuth'));
+app.use('/api/user', require('./router/userAuth'));
 
-app.use('/userData', require('./router/userData'));
+app.use('/api/userData', require('./router/userData'));
 
 
 app.listen(3000, function () {
