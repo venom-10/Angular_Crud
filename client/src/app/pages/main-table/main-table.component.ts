@@ -16,12 +16,12 @@ export class MainTableComponent implements OnInit {
     private usersDataService: UserDataService
   ) {}
   ngOnInit(): void {
-    this.usersDataService.getUserData().subscribe((usersData) => {
-      this.usersData = usersData;
-    });
     this.route.queryParams.subscribe((param) => {
-      const filter = param['filter'];
-      console.log(filter);
+      console.log('running');
+      const filter = param['filter'] ?? 'id';
+      this.usersDataService.getUserData(filter).subscribe((usersData) => {
+        this.usersData = usersData;
+      });
     });
   }
 }
