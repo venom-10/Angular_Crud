@@ -15,8 +15,8 @@ export class SearchUserComponent implements OnInit {
     private service: UserDataService
   ) {}
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      const searchName = params['search'];
+    this.route.queryParams.subscribe((param) => {
+      const searchName = param['search'];
 
       this.service.getSearchUserData(searchName).subscribe((searchedUsers) => {
         this.searchedUsers = searchedUsers;

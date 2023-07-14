@@ -17,6 +17,21 @@ router.get('/allData', async (req, res) => {
     }
 })
 
+// get filtered Data
+router.get('/filter', async (req, res) => {
+    const filterBy = req.query.filter;
+    const page = req.query.page ?? 1;
+    try {
+        const users = await userData.findAll({ order: [filterBy], offset: (page - 1) * 4, limit: 4 });
+        const Data = JSON.stringify(users, null, 2);
+        return res.status(200).send(Data);
+    }
+    catch (err) {
+        console.log(err);
+        return res.status(500).send('There is an error in Database');
+    }
+})
+
 // get searched Data
 router.get('/search', async (req, res) => {
     const name = req.query.name;
