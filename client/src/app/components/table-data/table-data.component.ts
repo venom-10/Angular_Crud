@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { data } from 'src/data';
 import { initFlowbite } from 'flowbite';
 
@@ -13,7 +7,7 @@ import { initFlowbite } from 'flowbite';
   templateUrl: './table-data.component.html',
   styleUrls: ['./table-data.component.css'],
 })
-export class TableDataComponent implements OnChanges, OnInit {
+export class TableDataComponent implements OnInit {
   @Input() userData: data = {
     id: 0,
     name: '',
@@ -25,10 +19,6 @@ export class TableDataComponent implements OnChanges, OnInit {
     image: '',
   };
   // @Input() userData:data;  // This will not work dkw
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.userData);
-  }
 
   ngOnInit(): void {
     initFlowbite();
