@@ -18,16 +18,25 @@ router.post('/add', async (req, res) => {
 
 // update user data into database
 router.post('/update', async (req, res) => {
-    const { name, state, address, dob, gender } = req.body;
+    const id = req.query.id;
     try {
-        const user = await userData.create({ name, state, address, dob, gender });
-        return res.status(200).send('user created');
+        const existedUser = await userData.findOne({ where: { id } });
+        const fields = ['name', 'state', 'address', 'dob', 'gender'];
+        fields.forEach((field) => {
+            console.log(existedUser[field]);
+            existedUser[field] = req.body[field];
+            console.log(existedUser[field]);
+        })
+        await existedUser.save();
+        return res.status(200).send('user updated successfully');
     }
     catch (err) {
         console.log(err);
         return res.status(503).send('There is an error in Database');
     }
 })
+
+// delete user data into database
 
 
 
