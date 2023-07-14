@@ -12,7 +12,7 @@ router.post('/add', async (req, res) => {
     }
     catch (err) {
         console.log(err);
-        return res.status(503).send('There is an error in Database');
+        return res.status(500).send('There is an error in Database');
     }
 })
 
@@ -22,22 +22,29 @@ router.post('/update', async (req, res) => {
     try {
         const existedUser = await userData.findOne({ where: { id } });
         const fields = ['name', 'state', 'address', 'dob', 'gender'];
-        fields.forEach((field) => {
-            console.log(existedUser[field]);
-            existedUser[field] = req.body[field];
-            console.log(existedUser[field]);
-        })
+        fields.forEach((field) => existedUser[field] = req.body[field])
         await existedUser.save();
         return res.status(200).send('user updated successfully');
     }
     catch (err) {
         console.log(err);
-        return res.status(503).send('There is an error in Database');
+        return res.status(500).send('There is an error in Database');
     }
 })
 
 // delete user data into database
-
+router.get('/delete', async (req, res) => {
+    const id = req.query.id;
+    try {
+        const existedUser = await userData.findOne({ where: { id } });
+        await existedUser.destroy();
+        return res.status(200).send('This entry has removed');
+    }
+    catch (err) {
+        console.log(err);
+        return res.status(500).send('There is an error in Database');
+    }
+})
 
 
 
