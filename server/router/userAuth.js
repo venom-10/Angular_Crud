@@ -1,13 +1,9 @@
 const express = require('express')
 const validator = require('email-validator');
 const router = express.Router();
-const userAuthDb = require('../db/db')
 const { validatePassword } = require('../utilities');
 const bcrypt = require('bcryptjs');
 const userAuth = require('../Models/userAuth');
-
-
-const connect = userAuthDb.connect;
 
 router.post('/register', async (req, res) => {
     const { name, email, password } = req.body;
