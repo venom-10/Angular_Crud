@@ -38,6 +38,8 @@
                 </tr>
             </thead>
             <tbody>
+                <tr *ngFor="let searchedUser of searchedUsers" app-table-data [userData]=searchedUser
+                    class="bg-gray-700 text-gray-400"></tr>
             </tbody>
         </table>
     </div>

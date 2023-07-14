@@ -12,4 +12,7 @@ export class UserDataService {
   getUserData() {
     return this.http.get<data[]>('api/userdata/allData');
   }
+  getSearchUserData(name: string) {
+    return this.http.get<data[]>(`api/userdata/search?name=${name}`);
+  }
 }

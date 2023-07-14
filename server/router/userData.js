@@ -20,7 +20,7 @@ router.get('/allData', async (req, res) => {
 // get searched Data
 router.get('/search', async (req, res) => {
     const name = req.query.name;
-    const page = req.query.page;
+    const page = req.query.page ?? 1;
     try {
         const users = await userData.findAll({ where: { name }, offset: (page - 1) * 4, limit: 4 });
         const searchedUsers = JSON.stringify(users, null, 2);
