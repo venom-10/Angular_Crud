@@ -6,5 +6,5 @@ export interface data {
   state: string;
   address: string;
   dob: string;
-  image: string;
+  image?: string;
 }
