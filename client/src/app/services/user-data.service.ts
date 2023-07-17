@@ -14,7 +14,7 @@ export class UserDataService {
       `api/userdata/allData?filter=${filter}&page=${page}`
     );
   }
-  getSearchUserData(name: string, page: number) {
+  getSearchUserData(name: string, page: number) { 
     return this.http.get<data[]>(
       `api/userdata/search?name=${name}&page=${page}`
     );
@@ -24,6 +24,7 @@ export class UserDataService {
     return this.http.get<number>('api/userdata/count');
   }
   addUserData(userData: object) {
+    console.log(userData)
     return this.http.post<string>('api/userdata/add', userData);
   }
   deleteUserData(id: number) {

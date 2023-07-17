@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const userData = require('../Models/userData');
+const multer = require('multer');
 
 
 // get all Data
@@ -48,11 +49,28 @@ router.get('/search', async (req, res) => {
     }
 })
 
+
+
+
 //  adding user data into database
-router.post('/add', async (req, res) => {
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "public");
+  },
+  filename: function (req, file, cb) {
+    const newName = req.body.name + "_" + req.body.email+'.png';
+    cb(null, newName);
+  },
+});
+
+const upload = multer({storage});
+
+router.post('/add', upload.single('file'), async (req, res) => {
     const { name, email, gender, address, state, dob } = req.body;
+    const imagepath = `${name}_${email}.png`;
     try {
-        const user = await userData.create({ name, email, gender, address, state, dob });
+        const user = await userData.create({ name, email, gender, address, state, dob, imagepath });
         return res.status(200).json('user created');
     }
     catch (err) {
