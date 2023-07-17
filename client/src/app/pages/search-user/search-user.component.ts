@@ -17,10 +17,12 @@ export class SearchUserComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((param) => {
       const searchName = param['search'];
-
-      this.service.getSearchUserData(searchName).subscribe((searchedUsers) => {
-        this.searchedUsers = searchedUsers;
-      });
+      const page = param['page'] ?? 1;
+      this.service
+        .getSearchUserData(searchName, page)
+        .subscribe((searchedUsers) => {
+          this.searchedUsers = searchedUsers;
+        });
     });
   }
 }

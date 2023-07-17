@@ -15,6 +15,7 @@ import { UpdateUserComponent } from './pages/update-user/update-user.component';
 import { SearchUserComponent } from './pages/search-user/search-user.component';
 import { ManipulateNavComponent } from './partials/manipulate-nav/manipulate-nav.component';
 import { SearchComponent } from './partials/search/search.component';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,12 @@ import { SearchComponent } from './partials/search/search.component';
     ManipulateNavComponent,
     SearchComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

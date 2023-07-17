@@ -9,10 +9,14 @@ export class UserDataService {
   usersData: data[] = [];
   constructor(private http: HttpClient) {}
 
-  getUserData(filter: string) {
-    return this.http.get<data[]>(`api/userdata/allData?filter=${filter}`);
+  getUserData(filter: string, page: number) {
+    return this.http.get<data[]>(
+      `api/userdata/allData?filter=${filter}&page=${page}`
+    );
   }
-  getSearchUserData(name: string) {
-    return this.http.get<data[]>(`api/userdata/search?name=${name}`);
+  getSearchUserData(name: string, page: number) {
+    return this.http.get<data[]>(
+      `api/userdata/search?name=${name}&page=${page}`
+    );
   }
 }
