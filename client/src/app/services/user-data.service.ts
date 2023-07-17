@@ -19,6 +19,7 @@ export class UserDataService {
       `api/userdata/search?name=${name}&page=${page}`
     );
   }
+  //
   getCountOfUserData() {
     return this.http.get<number>('api/userdata/count');
   }
@@ -27,5 +28,8 @@ export class UserDataService {
   }
   deleteUserData(id: number) {
     return this.http.post<string>('api/userdata/delete', {id});
+  }
+  updateUserData(updateUser: object, id: number) {    
+    return this.http.post<string>('api/userdata/update', {...updateUser,  id });
   }
 }

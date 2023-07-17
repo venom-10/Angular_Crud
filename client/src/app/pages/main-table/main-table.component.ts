@@ -17,7 +17,6 @@ export class MainTableComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.route.queryParams.subscribe((param) => {
-      console.log('running');
       const filter = param['filter'] ?? 'id';
       const page = param['page'] ?? 1;
       this.usersDataService.getUserData(filter, page).subscribe((usersData) => {

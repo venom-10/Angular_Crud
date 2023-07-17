@@ -32,8 +32,4 @@ export class TableDataComponent implements OnInit {
       this.router.navigate(['/']);
     })
   }
-
-  userUpdation(id: number) {
-    console.log(id);
-  }
 }

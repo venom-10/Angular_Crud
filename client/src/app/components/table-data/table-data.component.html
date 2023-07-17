@@ -5,7 +5,7 @@
 <td class="px-6 py-[10px]">{{ userData.address }}</td>
 <td class="px-6 py-[10px]">{{ userData.dob }}</td>
 <td class="px-6 py-[10px] w-full flex gap-4 items-center justify-center mt-[10px]">
-    <button (click)="userUpdation(userData.id)" class="text-gray-400 font-semibold hover:text-green-500">Edit</button>
+    <a href="/update?id={{userData.id}}" class="text-gray-400 font-semibold hover:text-green-500">Edit</a>
     <button id="dropdownDefaultButton" [attr.data-dropdown-toggle]="'delete_Dropdown'+userData.id"
         class="relative font-semibold hover:text-red-600 ml-2" type="button">Delete</button>
     <div id="delete_Dropdown{{userData.id}}"

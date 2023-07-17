@@ -63,13 +63,13 @@ router.post('/add', async (req, res) => {
 
 // update user data into database
 router.post('/update', async (req, res) => {
-    const id = req.query.id;
+    const { id } = req.body;
     try {
         const existedUser = await userData.findOne({ where: { id } });
         const fields = ['name', 'state', 'address', 'dob', 'gender'];
         fields.forEach((field) => existedUser[field] = req.body[field])
         await existedUser.save();
-        return res.status(200).send('user updated successfully');
+        return res.status(200).json('user updated successfully');
     }
     catch (err) {
         console.log(err);
