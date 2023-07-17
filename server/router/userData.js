@@ -78,12 +78,12 @@ router.post('/update', async (req, res) => {
 })
 
 // delete user data into database
-router.get('/delete', async (req, res) => {
-    const id = req.query.id;
+router.post('/delete', async (req, res) => {
+    const { id } = req.body;
     try {
         const existedUser = await userData.findOne({ where: { id } });
         await existedUser.destroy();
-        return res.status(200).send('This entry has removed');
+        return res.status(200).json('This entry has removed');
     }
     catch (err) {
         console.log(err);

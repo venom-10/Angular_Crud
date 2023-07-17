@@ -25,4 +25,7 @@ export class UserDataService {
   addUserData(userData: object) {
     return this.http.post<string>('api/userdata/add', userData);
   }
+  deleteUserData(id: number) {
+    return this.http.post<string>('api/userdata/delete', {id});
+  }
 }
