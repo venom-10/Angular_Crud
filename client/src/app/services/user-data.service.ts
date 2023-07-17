@@ -22,4 +22,7 @@ export class UserDataService {
   getCountOfUserData() {
     return this.http.get<number>('api/userdata/count');
   }
+  addUserData(userData: object) {
+    return this.http.post<string>('api/userdata/add', userData);
+  }
 }

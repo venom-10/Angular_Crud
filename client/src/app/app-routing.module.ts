@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'add', component: CreateComponent },
   { path: 'search', component: SearchUserComponent },
   { path: 'update', component: UpdateUserComponent },
+  
 ];
 
 @NgModule({

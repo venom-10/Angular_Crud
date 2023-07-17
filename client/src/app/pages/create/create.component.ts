@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Component, OnInit, ResolvedReflectiveFactory, createComponent } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserDataService } from 'src/app/services/user-data.service';
 
 @Component({
   selector: 'app-create',
@@ -7,15 +9,21 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./create.component.css'],
 })
 export class CreateComponent {
+  constructor(private service:UserDataService, private router:Router) { }
+  female: string = 'female';
   user = new FormGroup({
-    name: new FormControl(''),
-    email: new FormControl(''),
-    gender: new FormControl('Gender'),
-    address: new FormControl(''),
-    state: new FormControl(''),
-    dob: new FormControl(''),
+    name: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    gender: new FormControl('female', Validators.required),
+    address: new FormControl('', Validators.required),
+    state: new FormControl('', Validators.required),
+    dob: new FormControl('', Validators.required),
   });
   onSubmit() {
-    console.log(this.user.value);
+    if (this.user.valid) {
+      this.service.addUserData(this.user.value).subscribe((res) => {
+        this.router.navigate(['/']);
+      })
+    } else console.log(this.user.controls);
   }
 }

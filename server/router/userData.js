@@ -53,7 +53,7 @@ router.post('/add', async (req, res) => {
     const { name, email, gender, address, state, dob } = req.body;
     try {
         const user = await userData.create({ name, email, gender, address, state, dob });
-        return res.status(200).send('user created');
+        return res.status(200).json('user created');
     }
     catch (err) {
         console.log(err);
