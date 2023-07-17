@@ -16,6 +16,7 @@ import { SearchUserComponent } from './pages/search-user/search-user.component';
 import { ManipulateNavComponent } from './partials/manipulate-nav/manipulate-nav.component';
 import { SearchComponent } from './partials/search/search.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PaginateButtonComponent } from './partials/paginate-button/paginate-button.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +32,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     SearchUserComponent,
     ManipulateNavComponent,
     SearchComponent,
+    PaginateButtonComponent,
   ],
   imports: [
     BrowserModule,

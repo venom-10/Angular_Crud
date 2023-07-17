@@ -93,6 +93,18 @@ router.get('/delete', async (req, res) => {
 
 
 
+// count all row
+
+router.get('/count', async (req, res) => {
+    try {
+        const { count, row } = await userData.findAndCountAll({});
+        res.status(200).json(count);
+    }
+    catch (err) {
+        console.log(err);
+    }
+})
+
 
 
 module.exports = router;

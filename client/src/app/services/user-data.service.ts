@@ -19,4 +19,7 @@ export class UserDataService {
       `api/userdata/search?name=${name}&page=${page}`
     );
   }
+  getCountOfUserData() {
+    return this.http.get<number>('api/userdata/count');
+  }
 }
