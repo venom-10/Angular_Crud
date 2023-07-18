@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { data } from 'src/data';
 import { UserDataService } from 'src/app/services/user-data.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-table',
@@ -13,15 +13,21 @@ export class MainTableComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private usersDataService: UserDataService
   ) {}
   ngOnInit(): void {
     this.route.queryParams.subscribe((param) => {
       const filter = param['filter'] ?? 'id';
       const page = param['page'] ?? 1;
-      this.usersDataService.getUserData(filter, page).subscribe((usersData) => {
-        this.usersData = usersData;
-      });
+      this.usersDataService.getUserData(filter, page).subscribe(
+        (usersData) => {
+          this.usersData = usersData;
+        },
+        (error) => {
+          this.router.navigate(['/login']);
+        }
+      );
     });
   }
 }

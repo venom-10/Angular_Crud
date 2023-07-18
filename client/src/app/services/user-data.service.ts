@@ -8,8 +8,8 @@ import { data } from 'src/data';
 export class UserDataService {
   constructor(private http: HttpClient) {}
   setHeader() {
-    const token: string | null = localStorage.getItem('__token');
-    return new HttpHeaders({ token: token! });
+    const token: string = localStorage.getItem('__token') ?? 'none';
+    return new HttpHeaders({ token: token });
   }
   getUserData(filter: string, page: number) {
     const header = this.setHeader();
