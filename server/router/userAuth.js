@@ -16,7 +16,7 @@ router.post("/register", async (req, res) => {
 
   // validate password
   if (!validatePassword(password)) {
-    return res.status(422).send("Password is not valid type");
+    return res.status(422).json("Password is not valid type");
   }
 
   // Hash Password
@@ -24,10 +24,10 @@ router.post("/register", async (req, res) => {
   const hashPassword = bcrypt.hashSync(password, salt);
   try {
     const user = await userAuth.create({ name, email, password: hashPassword });
-    return res.status(201).send("User Created Successfully");
+    return res.status(201).json("User Created Successfully");
   } catch (err) {
     console.log(err);
-    return res.status(422).send(`There is an error`);
+    return res.status(422).json(`There is an error`);
   }
 });
 
@@ -35,15 +35,14 @@ router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   const user = await userAuth.findOne({ where: { email } });
   if (!user) {
-    return res.status(401).send("email is wrong");
+    return res.status(401).json("email is wrong");
   }
   const { password: hashPassword } = user;
   if (!bcrypt.compareSync(password, hashPassword))
-    return res.status(401).send("password is wrong");
+    return res.status(401).json("password is wrong");
   else {
     const token = jwt.sign({ email }, process.env.SECRET_KEY, { expiresIn: '7d' });
-    console.log('token', token)
-    return res.status(200).send("user login successfully");
+    return res.status(200).json({ accessToken: token, msg: 'user logged in' });
   }
 });
 module.exports = router;

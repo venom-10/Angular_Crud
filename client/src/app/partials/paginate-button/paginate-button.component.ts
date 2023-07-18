@@ -12,7 +12,6 @@ export class PaginateButtonComponent implements OnInit {
   ngOnInit(): void {
     this.service.getCountOfUserData().subscribe((count) => {
       this.pages = Math.ceil(count / 4);
-      console.log(this.pages);
     });
   }
   getRange(n: number): number[] {

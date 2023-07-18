@@ -1,5 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { compileNgModule } from '@angular/compiler';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { data } from 'src/data';
 
@@ -7,22 +6,28 @@ import { data } from 'src/data';
   providedIn: 'root',
 })
 export class UserDataService {
-  usersData: data[] = [];
   constructor(private http: HttpClient) {}
-
+  setHeader() {
+    const token: string | null = localStorage.getItem('__token');
+    return new HttpHeaders({ token: token! });
+  }
   getUserData(filter: string, page: number) {
+    const header = this.setHeader();
     return this.http.get<data[]>(
-      `api/userdata/allData?filter=${filter}&page=${page}`
+      `api/userdata/allData?filter=${filter}&page=${page}`,
+      {headers:header}
     );
   }
-  getSearchUserData(name: string, page: number) { 
+  getSearchUserData(name: string, page: number) {
+    const header = this.setHeader();
     return this.http.get<data[]>(
-      `api/userdata/search?name=${name}&page=${page}`
+      `api/userdata/search?name=${name}&page=${page}`, {headers:header}
     );
   }
   //
   getCountOfUserData() {
-    return this.http.get<number>('api/userdata/count');
+    const header = this.setHeader();
+    return this.http.get<number>('api/userdata/count', {headers:header});
   }
   addUserData(userData: any, file: any) {
     const formData = new FormData();
@@ -32,12 +37,15 @@ export class UserDataService {
       }
     }
     formData.append('file', file);
-    return this.http.post<string>('api/userdata/add', formData);
+    const header = this.setHeader();
+    return this.http.post<string>('api/userdata/add', formData, {headers:header});
   }
   deleteUserData(id: number) {
-    return this.http.post<string>('api/userdata/delete', {id});
+    const header = this.setHeader();
+    return this.http.post<string>('api/userdata/delete', { id }, {headers:header});
   }
-  updateUserData(updateUser: any, id: number) {    
-    return this.http.post<string>('api/userdata/update', {...updateUser,  id });
+  updateUserData(updateUser: any, id: number) {
+    const header = this.setHeader();
+    return this.http.post<string>('api/userdata/update', { ...updateUser, id }, {headers:header});
   }
 }
