@@ -26,6 +26,7 @@ export class MainTableComponent implements OnInit {
         },
         (error) => {
           this.router.navigate(['/login']);
+          localStorage.removeItem('__token')
         }
       );
     });

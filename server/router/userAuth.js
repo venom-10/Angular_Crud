@@ -34,6 +34,7 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   const user = await userAuth.findOne({ where: { email } });
+  const { name } = user;
   if (!user) {
     return res.status(401).json("email is wrong");
   }
@@ -41,8 +42,9 @@ router.post("/login", async (req, res) => {
   if (!bcrypt.compareSync(password, hashPassword))
     return res.status(401).json("password is wrong");
   else {
-    const token = jwt.sign({ email }, process.env.SECRET_KEY, { expiresIn: '7d' });
+    const token = jwt.sign({ name, email }, process.env.SECRET_KEY, { expiresIn: '7d' });
     return res.status(200).json({ accessToken: token, msg: 'user logged in' });
   }
 });
+
 module.exports = router;

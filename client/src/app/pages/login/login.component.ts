@@ -18,7 +18,8 @@ export class LoginComponent {
     if (!this.loginUser.valid) return;
     this.authService.login(this.loginUser.value).subscribe((res: any) => {
       localStorage.setItem('__token', res.accessToken);
-      this.router.navigate(['/'])
+      // this.router.navigate(['/'])
+      window.location.replace('/');
     });
   }
 }
