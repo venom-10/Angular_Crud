@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { compileNgModule } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { data } from 'src/data';
 
@@ -23,14 +24,20 @@ export class UserDataService {
   getCountOfUserData() {
     return this.http.get<number>('api/userdata/count');
   }
-  addUserData(userData: object) {
-    console.log(userData)
-    return this.http.post<string>('api/userdata/add', userData);
+  addUserData(userData: any, file: any) {
+    const formData = new FormData();
+    for (const key in userData) {
+      if (userData.hasOwnProperty(key)) {
+        formData.append(key, userData[key]);
+      }
+    }
+    formData.append('file', file);
+    return this.http.post<string>('api/userdata/add', formData);
   }
   deleteUserData(id: number) {
     return this.http.post<string>('api/userdata/delete', {id});
   }
-  updateUserData(updateUser: object, id: number) {    
+  updateUserData(updateUser: any, id: number) {    
     return this.http.post<string>('api/userdata/update', {...updateUser,  id });
   }
 }

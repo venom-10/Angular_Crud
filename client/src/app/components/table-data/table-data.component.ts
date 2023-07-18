@@ -18,15 +18,14 @@ export class TableDataComponent implements OnInit {
     state: '',
     address: '',
     dob: '',
-    image: '',
+    imagepath: '',
   };
   // @Input() userData:data;  // This will not work dkw
   constructor(private service:UserDataService, private router:Router) { }
   ngOnInit(): void {
-    initFlowbite();
+    // initFlowbite();
   }
   userDeletion(id: number) {
-    console.log(id)
     this.service.deleteUserData(id).subscribe((res) => {
       console.log(res);
       this.router.navigate(['/']);

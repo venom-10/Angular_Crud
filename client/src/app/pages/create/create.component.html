@@ -103,6 +103,8 @@
         id="file"
         name="file"
         type="file"
+        formControlName="file"
+        (change)="fileChange($event)"
       />
     </div>
     <select
