@@ -36,6 +36,10 @@ const userData = sequelize.define('userData', {
         type: DataTypes.STRING,
         allowNull: true
     },
+    subjects: {
+        type: DataTypes.JSON,
+        allowNull:true
+    }
 })
 
 module.exports = userData;

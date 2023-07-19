@@ -11,6 +11,7 @@ import { UserDataService } from 'src/app/services/user-data.service';
 })
 export class CreateComponent {
   constructor(private service: UserDataService, private router: Router) { }
+  checkedSubjects: Set<number> = new Set()
   file:any = '';
   female: string = 'female';
   user = new FormGroup({
@@ -20,8 +21,20 @@ export class CreateComponent {
     address: new FormControl('', Validators.required),
     state: new FormControl('', Validators.required),
     dob: new FormControl('', Validators.required),
-    file: new FormControl(''),
+    file: new FormControl('')
   });
+
+  multi(event:any) {
+    if (event.target.checked) {
+      this.checkedSubjects.add(event.target.value);
+    }
+    else {
+      this.checkedSubjects.delete(event.target.value)
+    }
+    console.log(this.checkedSubjects);
+    
+  }
+
   fileChange(event:any) {
     const img = event.target.files[0];
     if (img) {
@@ -30,7 +43,7 @@ export class CreateComponent {
   }
   onSubmit() {
     if (this.user.valid) {
-      this.service.addUserData(this.user.value, this.file).subscribe((res) => {
+      this.service.addUserData(this.user.value, this.file, this.checkedSubjects).subscribe((res) => {
         this.router.navigate(['/']);
       });
     } else console.log(this.user.controls);

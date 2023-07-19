@@ -29,14 +29,17 @@ export class UserDataService {
     const header = this.setHeader();
     return this.http.get<number>('api/userdata/count', {headers:header});
   }
-  addUserData(userData: any, file: any) {
+  addUserData(userData: any, file: any, subjects: Set<number>) {
     const formData = new FormData();
+    const jsonSubjects = JSON.parse(JSON.stringify(Array.from(subjects)));
+    console.log(subjects, jsonSubjects);
     for (const key in userData) {
       if (userData.hasOwnProperty(key)) {
         formData.append(key, userData[key]);
       }
     }
     formData.append('file', file);
+    formData.append('subjects', jsonSubjects);
     const header = this.setHeader();
     return this.http.post<string>('api/userdata/add', formData, {headers:header});
   }

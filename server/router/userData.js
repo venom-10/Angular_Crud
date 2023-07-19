@@ -67,10 +67,10 @@ const storage = multer.diskStorage({
 const upload = multer({storage});
 
 router.post('/add', upload.single('file'), async (req, res) => {
-    const { name, email, gender, address, state, dob } = req.body;
+    const { name, email, gender, address, state, dob, subjects } = req.body;
     const imagepath = `${name}_${email}.png`;
     try {
-        const user = await userData.create({ name, email, gender, address, state, dob, imagepath });
+        const user = await userData.create({ name, email, gender, address, state, dob, imagepath, subjects });
         return res.status(200).json('user created');
     }
     catch (err) {
