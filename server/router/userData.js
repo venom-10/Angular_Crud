@@ -84,7 +84,7 @@ router.post('/update', async (req, res) => {
     const { id } = req.body;
     try {
         const existedUser = await userData.findOne({ where: { id } });
-        const fields = ['name', 'state', 'address', 'dob', 'gender'];
+        const fields = ['name', 'state', 'address', 'dob', 'gender', 'subjects'];
         fields.forEach((field) => existedUser[field] = req.body[field])
         await existedUser.save();
         return res.status(200).json('user updated successfully');
@@ -123,6 +123,18 @@ router.get('/count', async (req, res) => {
     }
 })
 
+// get user by id
+router.get('/:id', async (req, res) => {
+    const id = req.params.id;
+    console.log(id);
+    try {
+        const user = await userData.findOne({ where: { id } });
+        return res.json(user);
 
+    }
+    catch (err) {
+        return res.json({msg:'Server Error'})
+    }
+})
 
 module.exports = router;

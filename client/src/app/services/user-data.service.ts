@@ -15,40 +15,59 @@ export class UserDataService {
     const header = this.setHeader();
     return this.http.get<data[]>(
       `api/userdata/allData?filter=${filter}&page=${page}`,
-      {headers:header}
+      { headers: header }
     );
   }
   getSearchUserData(name: string, page: number) {
     const header = this.setHeader();
     return this.http.get<data[]>(
-      `api/userdata/search?name=${name}&page=${page}`, {headers:header}
+      `api/userdata/search?name=${name}&page=${page}`,
+      { headers: header }
     );
   }
   //
   getCountOfUserData() {
     const header = this.setHeader();
-    return this.http.get<number>('api/userdata/count', {headers:header});
+    return this.http.get<number>('api/userdata/count', { headers: header });
   }
-  addUserData(userData: any, file: any, subjects: Set<number>) {
+  addUserData(userData: any, file: any, checkedSubjects: Set<number>) {
     const formData = new FormData();
-    const jsonSubjects = JSON.parse(JSON.stringify(Array.from(subjects)));
-    
+    const subjects = Array.from(checkedSubjects).join(',');
+
     for (const key in userData) {
       if (userData.hasOwnProperty(key)) {
         formData.append(key, userData[key]);
       }
     }
     formData.append('file', file);
-    formData.append('subjects', jsonSubjects);
+    formData.append('subjects', subjects);
     const header = this.setHeader();
-    return this.http.post<string>('api/userdata/add', formData, {headers:header});
+    return this.http.post<string>('api/userdata/add', formData, {
+      headers: header,
+    });
   }
   deleteUserData(id: number) {
     const header = this.setHeader();
-    return this.http.post<string>('api/userdata/delete', { id }, {headers:header});
+    return this.http.post<string>(
+      'api/userdata/delete',
+      { id },
+      { headers: header }
+    );
   }
-  updateUserData(updateUser: any, id: number) {
+  updateUserData(updateUser: any, id: number, checkedSubjects: Set<number>) {
     const header = this.setHeader();
-    return this.http.post<string>('api/userdata/update', { ...updateUser, id }, {headers:header});
+    const subjects = Array.from(checkedSubjects).join(',');
+    console.log(subjects);
+    console.log({ ...updateUser, id, subjects });
+    return this.http.post<string>(
+      'api/userdata/update',
+      { ...updateUser, id, subjects },
+      { headers: header }
+    );
+  }
+
+  getUserById(id: number) {
+    const header = this.setHeader();
+    return this.http.get<any>(`api/userdata/${id}`, { headers: header });
   }
 }

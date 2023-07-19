@@ -1,5 +1,6 @@
 <div class="flex justify-center items-center flex-col h-full pt-10">
   <form
+    *ngIf="showForm"
     [formGroup]="updateUser"
     (ngSubmit)="onSubmit()"
     class="w-1/2 relative mb-14"
@@ -22,7 +23,7 @@
     </div>
     <p
       *ngIf="
-        updateUser.controls.name.errors && updateUser.controls.name.touched
+        updateUser.controls['name'].errors && updateUser.controls['name'].touched
       "
       class="text-red-500 text-xs font-medium -mt-5 mb-2"
     >
@@ -45,7 +46,7 @@
     </div>
     <p
       *ngIf="
-        updateUser.controls.state.errors && updateUser.controls.state.touched
+        updateUser.controls['state'].errors && updateUser.controls['state'].touched
       "
       class="text-red-500 text-xs font-medium -mt-5 mb-2"
     >
@@ -69,45 +70,133 @@
     </div>
     <p
       *ngIf="
-        updateUser.controls.address.errors &&
-        updateUser.controls.address.touched
+        updateUser.controls['address'].errors &&
+        updateUser.controls['address'].touched
       "
       class="text-red-500 text-xs font-medium -mt-5 mb-2"
     >
       Address is required
     </p>
 
-    <div class="relative z-0 w-full mb-6 group">
+    <div class="relative z-0 w-full mb-6 group flex">
       <div class="relative w-[150px]">
-        <div
-          class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
-        ></div>
-
         <input type="date" id="dob" formControlName="dob" />
       </div>
+      
+      <div class="relative left-[140px]">
+        <button
+          id="dropdownDefaultButton"
+          data-dropdown-toggle="dropdown"
+          class="text-black border-[1px] border-black font-medium rounded-lg text-sm px-3 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          type="button"
+        >
+          Subjects
+          <svg
+            class="w-2.5 h-2.5 ml-2.5"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 10 6"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m1 1 4 4 4-4"
+            />
+          </svg>
+        </button>
+        <!-- Dropdown menu -->
+
+        <div
+          id="dropdown"
+          class="z-10 hidden border-[1px] border-black bg-gray-100 divide-y px-4 py-3  divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+        >
+          <div class="flex items-center mb-4">
+            <input
+              [checked] = selected[0]
+              id="default-checkbox1"
+              type="checkbox"
+              value="1"
+              (click)="multi($event)"
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            />
+            <label
+              for="default-checkbox1"
+              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 w-full"
+              >Physics</label
+            >
+          </div>
+          <div class="flex items-center mb-4">
+            <input
+              [checked] = selected[1]
+              id="default-checkbox2"
+              type="checkbox"
+              value="2"
+              (click)="multi($event)"
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            />
+            <label
+              for="default-checkbox2"
+              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 w-full"
+              >Mathematics</label
+            >
+          </div>
+          <div class="flex items-center mb-4">
+            <input
+              [checked] = selected[2]
+              id="default-checkbox3"
+              type="checkbox"
+              value="3"
+              (click)="multi($event)"
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            />
+            <label
+              for="default-checkbox3"
+              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 w-full"
+              >Chemistry</label
+            >
+          </div>
+          
+          <div class="flex items-center mb-4">
+            <input
+              [checked] = selected[3]
+              id="default-checkbox4"
+              type="checkbox"
+              value="4"
+              (click)="multi($event)"
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            />
+            <label
+              for="default-checkbox4"
+              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 w-full"
+              >Biology</label
+            >
+          </div>
+        </div>
+      </div>
+      <select
+        id="gender"
+        formControlName="gender"
+        class="text-black absolute right-0 font-medium w-max rounded-lg"
+      >
+        <option value="Male" class="">Male</option>
+        <option value="Female" class="">
+          Female
+        </option>
+        <option value="Other" class="">Other</option>
+      </select>
     </div>
     <p
-      *ngIf="
-        updateUser.controls.dob.errors &&
-        updateUser.controls.dob.touched
-      "
+      *ngIf="updateUser.controls['dob'].errors && updateUser.controls['dob'].touched"
       class="text-red-500 text-xs font-medium -mt-5 mb-2"
     >
       Date of Birth is required
     </p>
-    
-    <select
-      id="gender"
-      formControlName="gender"
-      class="text-white sm:block w-max bg-blue-700 rounded-lg"
-    >
-      <option value="Male" class="">Male</option>
-      <option [defaultSelected]="female" value="Female" class="">Female</option>
-      <option value="Other" class="">Other</option>
-    </select>
-    <button
+     <button
       type="submit"
-      class="text-white absolute bottom-0 right-0 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-base w-auto sm:w-auto px-5 py-2.5 text-center focus:ring-blue-800"
+      class="text-white relative bottom-0 right-0 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-base w-full sm:w-auto px-5 py-2.5 text-center focus:ring-blue-800"
     >
       Submit
     </button>
