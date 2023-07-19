@@ -56,7 +56,8 @@ router.get('/search', async (req, res) => {
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "public");
+        cb(null, "public/images");
+        
   },
   filename: function (req, file, cb) {
     const newName = req.body.name + "_" + req.body.email+'.png';

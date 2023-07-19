@@ -113,9 +113,16 @@
           id="dropdown"
           class="z-10 hidden border-[1px] border-black bg-gray-100 divide-y px-4 py-3  divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
         >
+        <div class="flex items-center">
+            <input id="default-checkbox" type="checkbox" (click)="selectAll($event)"
+                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-2" />
+              <label for="default-checkbox"
+              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 w-full">All</label>
+          </div>
+          <hr class="h-[2px] my-2 bg-black border-0 dark:bg-gray-700">
           <div class="flex items-center mb-4">
             <input
-              [checked] = selected[0]
+              [checked] = "selected[0] || allChecked"
               id="default-checkbox1"
               type="checkbox"
               value="1"
@@ -130,7 +137,7 @@
           </div>
           <div class="flex items-center mb-4">
             <input
-              [checked] = selected[1]
+              [checked] = "selected[1] || allChecked"
               id="default-checkbox2"
               type="checkbox"
               value="2"
@@ -145,7 +152,7 @@
           </div>
           <div class="flex items-center mb-4">
             <input
-              [checked] = selected[2]
+              [checked] = "selected[2] || allChecked"
               id="default-checkbox3"
               type="checkbox"
               value="3"
@@ -161,7 +168,7 @@
           
           <div class="flex items-center mb-4">
             <input
-              [checked] = selected[3]
+              [checked] = "selected[3] || allChecked"
               id="default-checkbox4"
               type="checkbox"
               value="4"

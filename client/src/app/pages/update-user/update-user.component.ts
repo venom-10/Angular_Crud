@@ -32,8 +32,7 @@ export class UpdateUserComponent {
         // this.checkedSubjects = arr;   // will not work fix need to convert arr to set
         arr.forEach((id: number) => {
           this.selected[id - 1] = 1;
-          if(id)
-            this.checkedSubjects.add(id);
+          if (id) this.checkedSubjects.add(id);
         });
         this.updateUser = new FormGroup({
           name: new FormControl(this.userData.name, Validators.required),
@@ -48,13 +47,25 @@ export class UpdateUserComponent {
   }
 
   // get edited checked item from update
+  allChecked: boolean = false;
+  selectAll(event: any) {
+    if (event.target.checked) {
+      this.allChecked = true;
+      this.checkedSubjects.add(1);
+      this.checkedSubjects.add(2);
+      this.checkedSubjects.add(3);
+      this.checkedSubjects.add(4);
+    } else {
+      this.allChecked = false;
+      this.checkedSubjects.clear();
+      this.selected = [0]  // reset the selected array
+    }
+  }
   multi(event: any) {
     if (event.target.checked) {
       this.checkedSubjects.add(event.target.value);
-      console.log(this.checkedSubjects);
     } else {
       this.checkedSubjects.delete(event.target.value);
-      console.log(this.checkedSubjects);
     }
   }
 

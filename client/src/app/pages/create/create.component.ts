@@ -10,8 +10,8 @@ import { UserDataService } from 'src/app/services/user-data.service';
   styleUrls: ['./create.component.css'],
 })
 export class CreateComponent {
-  constructor(private service: UserDataService, private router: Router) { }
-  checkedSubjects: Set<number> = new Set()
+  constructor(private service: UserDataService, private router: Router) {}
+  checkedSubjects: Set<number> = new Set();
   file: any = '';
   prevAvailable: boolean = false;
   imageURL: any;
@@ -22,21 +22,31 @@ export class CreateComponent {
     address: new FormControl('', Validators.required),
     state: new FormControl('', Validators.required),
     dob: new FormControl('', Validators.required),
-    file: new FormControl('')
+    file: new FormControl(''),
   });
-
-  multi(event:any) {
+  allChecked: boolean = false;
+  selectAll(event: any) {
     if (event.target.checked) {
+      this.allChecked = true;
+      this.checkedSubjects.add(1)
+      this.checkedSubjects.add(2);
+      this.checkedSubjects.add(3);
+      this.checkedSubjects.add(4);
+    } else {
+      this.allChecked = false;
+      this.checkedSubjects.clear();
+    }
+  }
+  multi(event: any) {
+    if (event.target.checked) {
+      console.log(event.target.value, typeof(event.target.value));
       this.checkedSubjects.add(event.target.value);
+    } else {
+      this.checkedSubjects.delete(event.target.value);
     }
-    else {
-      this.checkedSubjects.delete(event.target.value)
-    }
-    console.log(this.checkedSubjects);
-    
   }
 
-  fileChange(event:any) {
+  fileChange(event: any) {
     const img = event.target.files[0];
     if (img) {
       this.file = img;
@@ -50,9 +60,11 @@ export class CreateComponent {
   }
   onSubmit() {
     if (this.user.valid) {
-      this.service.addUserData(this.user.value, this.file, this.checkedSubjects).subscribe((res) => {
-        this.router.navigate(['/']);
-      });
+      this.service
+        .addUserData(this.user.value, this.file, this.checkedSubjects)
+        .subscribe((res) => {
+          window.location.replace('/')
+        });
     } else console.log(this.user.controls);
   }
 }

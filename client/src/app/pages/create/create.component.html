@@ -1,99 +1,50 @@
 <div class="flex justify-center items-center h-full pt-10 gap-4">
   <div *ngIf="prevAvailable">
-    <img
-      class="h-[370px] w-[370px] relative bottom-10 right-[100px] rounded-lg"
-      [src]="imageURL"
-      alt="preview"
-    />
+    <img class="h-[370px] w-[370px] relative bottom-10 right-[100px] rounded-lg" [src]="imageURL" alt="preview" />
   </div>
-  <form
-    [formGroup]="user"
-    (ngSubmit)="onSubmit()"
-    class="w-1/2 relative"
-    method="POST"
-    multi
-  >
+  <form [formGroup]="user" (ngSubmit)="onSubmit()" class="w-1/2 relative" method="POST" multi>
     <div class="relative z-0 w-full text-black mb-6 group">
-      <input
-        id="name"
-        formControlName="name"
-        type="name"
+      <input id="name" formControlName="name" type="name"
         class="block py-2.5 px-0 font-medium w-full bg-inherit text-md border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-        autocomplete="off"
-        required
-      />
-      <label
-        for="name"
-        class="font-medium absolute text-base text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:font-bold peer-focus:-translate-y-6"
-        >Name</label
-      >
+        autocomplete="off" required />
+      <label for="name"
+        class="font-medium absolute text-base text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:font-bold peer-focus:-translate-y-6">Name</label>
     </div>
-    <p
-      *ngIf="user.controls.name.errors && user.controls.name.touched"
-      class="text-red-500 text-xs font-medium -mt-5 mb-2"
-    >
+    <p *ngIf="user.controls.name.errors && user.controls.name.touched"
+      class="text-red-500 text-xs font-medium -mt-5 mb-2">
       Name is required
     </p>
     <div class="relative z-0 w-full mb-6 group">
-      <input
-        type="email"
-        id="email"
-        formControlName="email"
+      <input type="email" id="email" formControlName="email"
         class="block py-2.5 px-0 font-medium w-full text-md bg-inherit border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-        autocomplete="off"
-        required
-      />
-      <label
-        for="email"
-        class="font-medium absolute text-base text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:font-bold peer-focus:-translate-y-6"
-        >Email</label
-      >
+        autocomplete="off" required />
+      <label for="email"
+        class="font-medium absolute text-base text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:font-bold peer-focus:-translate-y-6">Email</label>
     </div>
-    <p
-      *ngIf="user.controls.email.errors && user.controls.email.touched"
-      class="text-red-500 text-xs font-medium -mt-5 mb-2"
-    >
+    <p *ngIf="user.controls.email.errors && user.controls.email.touched"
+      class="text-red-500 text-xs font-medium -mt-5 mb-2">
       Email is required
     </p>
     <div class="relative z-0 w-full mb-6 group">
-      <input
-        type="text"
-        id="state"
-        formControlName="state"
+      <input type="text" id="state" formControlName="state"
         class="block py-2.5 px-0 font-medium w-full text-md bg-inherit border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-        autocomplete="off"
-      />
-      <label
-        for="state"
-        class="font-medium absolute text-base text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:font-bold peer-focus:-translate-y-6"
-        >State</label
-      >
+        autocomplete="off" />
+      <label for="state"
+        class="font-medium absolute text-base text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:font-bold peer-focus:-translate-y-6">State</label>
     </div>
-    <p
-      *ngIf="user.controls.state.errors && user.controls.state.touched"
-      class="text-red-500 text-xs font-medium -mt-5 mb-2"
-    >
+    <p *ngIf="user.controls.state.errors && user.controls.state.touched"
+      class="text-red-500 text-xs font-medium -mt-5 mb-2">
       State is required
     </p>
     <div class="relative z-0 w-full mb-6 group">
-      <input
-        type="text"
-        id="address"
-        formControlName="address"
+      <input type="text" id="address" formControlName="address"
         class="block py-2.5 px-0 font-medium w-full text-md bg-inherit border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-        autocomplete="off"
-        required
-      />
-      <label
-        for="Address"
-        class="font-medium absolute text-base text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:font-bold"
-        >Address</label
-      >
+        autocomplete="off" required />
+      <label for="Address"
+        class="font-medium absolute text-base text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:font-bold">Address</label>
     </div>
-    <p
-      *ngIf="user.controls.address.errors && user.controls.address.touched"
-      class="text-red-500 text-xs font-medium -mt-5 mb-2"
-    >
+    <p *ngIf="user.controls.address.errors && user.controls.address.touched"
+      class="text-red-500 text-xs font-medium -mt-5 mb-2">
       Address is required
     </p>
     <div class="relative z-0 w-full mb-6 group flex">
@@ -102,125 +53,73 @@
       </div>
 
       <div class="relative left-[140px]">
-        <button
-          id="dropdownDefaultButton"
-          data-dropdown-toggle="dropdown"
+        <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
           class="text-black border-[1px] border-black font-medium rounded-lg text-sm px-3 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          type="button"
-        >
+          type="button">
           Subjects
-          <svg
-            class="w-2.5 h-2.5 ml-2.5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 10 6"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="m1 1 4 4 4-4"
-            />
+          <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+            viewBox="0 0 10 6">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="m1 1 4 4 4-4" />
           </svg>
         </button>
         <!-- Dropdown menu -->
 
-        <div
-          id="dropdown"
-          class="z-10 hidden border-[1px] border-black bg-gray-100 divide-y px-4 py-3 divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
-        >
+        <div id="dropdown"
+          class="z-10 hidden border-[1px] border-black bg-gray-100 divide-y px-4 py-3 divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+          <div class="flex items-center">
+            <input id="default-checkbox" type="checkbox" (click)="selectAll($event)"
+                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 mr-2" />
+              <label for="default-checkbox"
+              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 w-full">All</label>
+          </div>
+          <hr class="h-[2px] my-2 bg-black border-0 dark:bg-gray-700">
+
           <div class="flex items-center mb-4">
-            <input
-              id="default-checkbox1"
-              type="checkbox"
-              value="1"
-              (click)="multi($event)"
-              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-            />
-            <label
-              for="default-checkbox1"
-              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 w-full"
-              >Physics</label
-            >
+            <input id="default-checkbox1" type="checkbox" value="1" (click)="multi($event)" [checked] = allChecked
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+            <label for="default-checkbox1"
+              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 w-full">Physics</label>
           </div>
           <div class="flex items-center mb-4">
-            <input
-              id="default-checkbox2"
-              type="checkbox"
-              value="2"
-              (click)="multi($event)"
-              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-            />
-            <label
-              for="default-checkbox2"
-              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 w-full"
-              >Mathematics</label
-            >
+            <input id="default-checkbox2" type="checkbox" value="2" (click)="multi($event)" [checked] = allChecked
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+            <label for="default-checkbox2"
+              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 w-full">Mathematics</label>
           </div>
           <div class="flex items-center mb-4">
-            <input
-              id="default-checkbox3"
-              type="checkbox"
-              value="3"
-              (click)="multi($event)"
-              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-            />
-            <label
-              for="default-checkbox3"
-              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 w-full"
-              >Chemistry</label
-            >
+            <input id="default-checkbox3" type="checkbox" value="3" (click)="multi($event)" [checked] = allChecked
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+            <label for="default-checkbox3"
+              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 w-full">Chemistry</label>
           </div>
           <div class="flex items-center mb-4">
-            <input
-              id="default-checkbox4"
-              type="checkbox"
-              value="4"
-              (click)="multi($event)"
-              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-            />
-            <label
-              for="default-checkbox4"
-              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 w-full"
-              >Biology</label
-            >
+            <input id="default-checkbox4" type="checkbox" value="4" (click)="multi($event)" [checked] = allChecked
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+            <label for="default-checkbox4"
+              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 w-full">Biology</label>
           </div>
         </div>
       </div>
-      <select
-        id="gender"
-        formControlName="gender"
-        class="text-black absolute right-0 font-medium w-max rounded-lg"
-      >
+      <select id="gender" formControlName="gender" class="text-black absolute right-0 font-medium w-max rounded-lg">
         <option value="Male" class="">Male</option>
-        <option  value="Female" class="">
+        <option value="Female" class="">
           Female
         </option>
         <option value="Other" class="">Other</option>
       </select>
     </div>
-    <p
-      *ngIf="user.controls.dob.errors && user.controls.dob.touched"
-      class="text-red-500 text-xs font-medium -mt-5 mb-2"
-    >
+    <p *ngIf="user.controls.dob.errors && user.controls.dob.touched"
+      class="text-red-500 text-xs font-medium -mt-5 mb-2">
       Date of Birth is required
     </p>
     <div class="w-full mb-6 group">
       <input
         class="block w-full text-base text-gray-400 border rounded-lg cursor-pointer focus:outline-none bg-gray-700 border-gray-600 placeholder-gray-400"
-        id="file"
-        name="file"
-        type="file"
-        formControlName="file"
-        (change)="fileChange($event)"
-      />
+        id="file" name="file" type="file" formControlName="file" (change)="fileChange($event)" />
     </div>
-    <button
-      type="submit"
-      class="text-white relative bottom-0 right-0 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-base w-full sm:w-auto px-5 py-2.5 text-center focus:ring-blue-800"
-    >
+    <button type="submit"
+      class="text-white relative bottom-0 right-0 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-base w-full sm:w-auto px-5 py-2.5 text-center focus:ring-blue-800">
       Submit
     </button>
   </form>
