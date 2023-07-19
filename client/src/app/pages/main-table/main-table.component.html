@@ -1,98 +1,91 @@
-<div class='w-full h-full px-[20px] pt-[80px]'>
-    <div class='w-full flex relative'>
-        <!-- search component -->
-        <!-- <app-search></app-search> -->
-        <form class="flex items-center w-[15%] mb-2" action="/search">
-            <label for="simple-search" class="sr-only">Search</label>
-            <div class="relative w-full">
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor"
-                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </div>
-                <input type="text" name='search' id="simple-search" autocomplete=off
-                    class="border text-sm rounded-lg  block w-full pl-10 p-2.5  bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Search by name" required>
-            </div>
-        </form>
-        <div class='absolute right-0 flex justify-end gap-6'>
-            <!-- manipulate nav component-->
-            <!-- <app-manipulate-nav></app-manipulate-nav> -->
-            <form action="/">
-                <button id="dropdownDefaultButton" data-dropdown-toggle="filterDropdown"
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    type="button">Filter <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg></button>
-                <div id="filterDropdown"
-                    class="z-10 hidden divide-y divide-gray-100 rounded-lg shadow w-44 bg-gray-900">
-                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                        <li>
-                            <button name='filter' value='name' type='submit'
-                                class="block w-full px-4 py-2 text-base font-medium  text-gray-200 hover:bg-gray-100 hover:text-gray-800">by
-                                Name</button>
-                        </li>
-                        <li>
-                            <button name='filter' value='email' type='submit'
-                                class="block w-full px-4 py-2 text-base font-medium  text-gray-200 hover:bg-gray-100 hover:text-gray-800">by
-                                Email</button>
-                        </li>
-                        <li>
-                            <button name='filter' value='address' type='submit'
-                                class="block w-full px-4 py-2 text-base font-medium  text-gray-200 hover:bg-gray-100 hover:text-gray-800">by
-                                Address</button>
-                        </li>
-                        <li>
-                            <button name='filter' value='DOB' type='submit'
-                                class="block w-full px-4 py-2 text-base font-medium  text-gray-200 hover:bg-gray-100 hover:text-gray-800">by
-                                Date of Birth</button>
-                        </li>
-                    </ul>
-                </div>
-            </form>
-            <a type="button" href='add'
-                class="text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Add</a>
+<div class="w-full h-full px-[20px] pt-[80px]">
+  <div class="w-full flex relative">
+    <!-- search component -->
+    <!-- <app-search></app-search> -->
+    <form class="flex items-center w-[15%] mb-2" action="/search">
+      <label for="simple-search" class="sr-only">Search</label>
+      <div class="relative w-full">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+          <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor"
+            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+              clip-rule="evenodd"></path>
+          </svg>
         </div>
+        <input type="text" name="search" id="simple-search" autocomplete="off"
+          class="border text-sm rounded-lg block w-full pl-10 p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+          placeholder="Search by name" required />
+      </div>
+    </form>
+    <div class="absolute right-0 flex justify-end gap-6">
+      <!-- manipulate nav component-->
+      <!-- <app-manipulate-nav></app-manipulate-nav> -->
+      <form action="/">
+        <button id="dropdownDefaultButton" data-dropdown-toggle="filterDropdown"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          type="button">
+          Filter
+          <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <div id="filterDropdown" class="z-10 hidden divide-y divide-gray-100 rounded-lg shadow w-44 bg-gray-900">
+          <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+            <li>
+              <button name="filter" value="name" type="submit"
+                class="block w-full px-4 py-2 text-base font-medium text-gray-200 hover:bg-gray-100 hover:text-gray-800">
+                by Name
+              </button>
+            </li>
+            <li>
+              <button name="filter" value="email" type="submit"
+                class="block w-full px-4 py-2 text-base font-medium text-gray-200 hover:bg-gray-100 hover:text-gray-800">
+                by Email
+              </button>
+            </li>
+            <li>
+              <button name="filter" value="address" type="submit"
+                class="block w-full px-4 py-2 text-base font-medium text-gray-200 hover:bg-gray-100 hover:text-gray-800">
+                by Address
+              </button>
+            </li>
+            <li>
+              <button name="filter" value="DOB" type="submit"
+                class="block w-full px-4 py-2 text-base font-medium text-gray-200 hover:bg-gray-100 hover:text-gray-800">
+                by Date of Birth
+              </button>
+            </li>
+          </ul>
+        </div>
+      </form>
+      <a type="button" href="add"
+        class="text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Add</a>
     </div>
-    <div class="relative w-full overflow-x-auto shadow-md sm:rounded-lg">
-        <table id='usertable' class="w-full text-sm text-left text-gray-500 ">
-            <thead class="text-xs text-gray-900 uppercase bg-gray-400">
-                <tr>
-                    <th scope="col" class="px-6 py-3">
-                        Name
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Email
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Gender
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        state
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Address
-                    </th>
-                    <th scope="col" class="px-12 py-3">
-                        DOB
-                    </th>
-                    <th scope="col" class="px-6 py-3 text-center">
-                        Action
-                    </th>
-                    <th scope="col" class="px-6 py-3 text-center">
-                        Image
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let userData of usersData" app-table-data [userData]="userData"
-                    class="bg-gray-700 text-gray-400"></tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="mt-6 flex justify-center"><app-paginate-button></app-paginate-button></div>
+  </div>
+  <div class="relative w-full overflow-x-auto shadow-md sm:rounded-lg">
+    <table id="usertable" class="w-full text-sm text-left text-gray-500">
+      <thead class="text-xs text-gray-900 uppercase bg-gray-400">
+        <tr>
+          <th scope="col" class="px-6 py-3 text-center">Image</th>
+          <th scope="col" class="px-6 py-3">Name</th>
+          <th scope="col" class="px-6 py-3">Email</th>
+          <th scope="col" class="px-6 py-3">Gender</th>
+          <th scope="col" class="px-6 py-3">state</th>
+          <th scope="col" class="px-6 py-3">Address</th>
+          <th scope="col" class="px-12 py-3">DOB</th>
+          <th scope="col" class="px-6 py-3 text-center">Subjects</th>
+          <th scope="col" class="px-6 py-3 text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let userData of usersData" app-table-data [userData]="userData" class="bg-gray-700 text-gray-400">
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mt-6 flex justify-center">
+    <app-paginate-button></app-paginate-button>
+  </div>
 </div>

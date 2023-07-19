@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { data } from 'src/data';
 import { UserDataService } from 'src/app/services/user-data.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-main-table',
@@ -13,7 +13,6 @@ export class MainTableComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private usersDataService: UserDataService
   ) {}
   ngOnInit(): void {
@@ -25,8 +24,8 @@ export class MainTableComponent implements OnInit {
           this.usersData = usersData;
         },
         (error) => {
-          this.router.navigate(['/login']);
           localStorage.removeItem('__token')
+          window.location.replace('/login');
         }
       );
     });

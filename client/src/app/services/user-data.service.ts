@@ -32,7 +32,7 @@ export class UserDataService {
   addUserData(userData: any, file: any, subjects: Set<number>) {
     const formData = new FormData();
     const jsonSubjects = JSON.parse(JSON.stringify(Array.from(subjects)));
-    console.log(subjects, jsonSubjects);
+    
     for (const key in userData) {
       if (userData.hasOwnProperty(key)) {
         formData.append(key, userData[key]);

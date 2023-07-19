@@ -7,4 +7,5 @@ export interface data {
   address: string;
   dob: string;
   imagepath?: string;
+  subjects?:any
 }
