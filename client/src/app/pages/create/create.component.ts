@@ -12,12 +12,13 @@ import { UserDataService } from 'src/app/services/user-data.service';
 export class CreateComponent {
   constructor(private service: UserDataService, private router: Router) { }
   checkedSubjects: Set<number> = new Set()
-  file:any = '';
-  female: string = 'female';
+  file: any = '';
+  prevAvailable: boolean = false;
+  imageURL: any;
   user = new FormGroup({
     name: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
-    gender: new FormControl('female', Validators.required),
+    gender: new FormControl('Female', Validators.required),
     address: new FormControl('', Validators.required),
     state: new FormControl('', Validators.required),
     dob: new FormControl('', Validators.required),
@@ -40,6 +41,12 @@ export class CreateComponent {
     if (img) {
       this.file = img;
     }
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imageURL = reader.result as string;
+    };
+    reader.readAsDataURL(img);
+    this.prevAvailable = true;
   }
   onSubmit() {
     if (this.user.valid) {
