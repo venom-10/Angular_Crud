@@ -43,8 +43,22 @@ router.post("/login", async (req, res) => {
     return res.status(401).json("password is wrong");
   else {
     const token = jwt.sign({ name, email }, process.env.SECRET_KEY, { expiresIn: '7d' });
-    return res.status(200).json({ accessToken: token, msg: 'user logged in' });
+    return res.status(200).json({ accessToken: token, msg: 'user logged in'});
   }
 });
 
+router.get('/userDetails', async (req, res) => {
+  const token = req.headers.token;
+  const arr = token.split('.');
+  const data = atob(arr[1]);
+  const { email } = JSON.parse(data);
+  try {
+    const user = await userAuth.findOne({ where: { email } });
+    return res.status(200).send(user);
+  }
+  catch (err) {
+    console.log(err);
+    return res.status(500).send('Internal Error');
+  }
+})
 module.exports = router;
