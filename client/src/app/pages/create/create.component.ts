@@ -28,7 +28,7 @@ export class CreateComponent {
   selectAll(event: any) {
     if (event.target.checked) {
       this.allChecked = true;
-      this.checkedSubjects.add(1)
+      this.checkedSubjects.add(1);
       this.checkedSubjects.add(2);
       this.checkedSubjects.add(3);
       this.checkedSubjects.add(4);
@@ -39,13 +39,19 @@ export class CreateComponent {
   }
   multi(event: any) {
     if (event.target.checked) {
-      console.log(event.target.value, typeof(event.target.value));
+      console.log(event.target.value, typeof event.target.value);
       this.checkedSubjects.add(event.target.value);
     } else {
       this.checkedSubjects.delete(event.target.value);
     }
   }
 
+  close(file:any) {
+    this.prevAvailable = false;
+    this.file = null;
+    this.imageURL = null;
+    file.value = "";
+  }
   fileChange(event: any) {
     const img = event.target.files[0];
     if (img) {

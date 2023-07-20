@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userData = require('../Models/userData');
 const multer = require('multer');
+const sharp = require('sharp')
 
 
 // get all Data
@@ -53,11 +54,9 @@ router.get('/search', async (req, res) => {
 
 
 //  adding user data into database
-
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
         cb(null, "public/images");
-        
   },
   filename: function (req, file, cb) {
     const newName = req.body.name + "_" + req.body.email+'.png';
@@ -65,11 +64,17 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({storage});
+const upload = multer({ storage });
 
-router.post('/add', upload.single('file'), async (req, res) => {
+
+router.post('/add', upload.single('file'),  async (req, res) => {
     const { name, email, gender, address, state, dob, subjects } = req.body;
     const imagepath = (req.file) ? `${name}_${email}.png` : null;
+    if (req.file) { 
+        sharp(`public/images/${imagepath}`)
+        .resize(320)
+        .toFile(`public/thumbnail/${imagepath}`);   
+    }
     try {
         const user = await userData.create({ name, email, gender, address, state, dob, imagepath, subjects });
         return res.status(200).json('user created');
@@ -139,3 +144,14 @@ router.get('/:id', async (req, res) => {
 })
 
 module.exports = router;
+
+
+
+
+
+
+
+// const sharp = require('sharp');
+
+
+// sharp('public/images/default.png').resize(420).toFile('public/thumbnail/hello5.png')
