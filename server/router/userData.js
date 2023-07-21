@@ -9,8 +9,9 @@ const sharp = require('sharp')
 router.get('/allData', async (req, res) => {
     const page = req.query.page ?? 1;
     const filterBy = req.query.filter ?? 'id';
+    const ord = req.query.ord ?? 'asc';
     try {
-        const users = await userData.findAll({ order: [filterBy], offset: (page - 1) * 4, limit: 4 });
+        const users = await userData.findAll({ order: [[filterBy, ord]], offset: (page - 1) * 4, limit: 4 });
         const Data = JSON.stringify(users, null, 2);
         return res.status(200).send(Data);
     }

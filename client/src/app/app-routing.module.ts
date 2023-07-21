@@ -6,6 +6,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { CreateComponent } from './pages/create/create.component';
 import { UpdateUserComponent } from './pages/update-user/update-user.component';
+import { TableComponent } from './components/table/table.component';
 
 const routes: Routes = [
   { path: '', component: MainTableComponent },
@@ -14,7 +15,7 @@ const routes: Routes = [
   { path: 'add', component: CreateComponent },
   { path: 'search', component: SearchUserComponent },
   { path: 'update', component: UpdateUserComponent },
-  
+  { path: 'table', component: TableComponent },
 ];
 
 @NgModule({

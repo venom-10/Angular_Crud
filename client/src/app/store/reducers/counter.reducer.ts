@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
-import { increment, decrement, check, reset, incrementByFive, storeUser } from '../action/counter.action';
+import { increment, decrement, check, reset, incrementByFive, storeUser, storeUserData } from '../action/counter.action';
 import { userDetails } from '../models/userDetails.model';
+import { data } from 'src/data';
 
 export const initialState = 0;
 
@@ -33,6 +34,17 @@ export const userReducer = createReducer(
   }),
   on(check, (state, action) => {
     console.log(state);
+    return state;
+  })
+)
+export const userData:data[] = []
+export const userDataReducer = createReducer(
+  userData, 
+  on(storeUserData, (state, action) => {
+    return action.defaultUserData;
+  }),
+  on(check, (state, action) => {
+    console.log('s', state);
     return state;
   })
 )

@@ -11,10 +11,10 @@ export class UserDataService {
     const token: string = localStorage.getItem('__token') ?? 'none';
     return new HttpHeaders({ token: token });
   }
-  getUserData(filter: string, page: number) {
+  getUserData(filter: string, page: number, ord:string='asc') {
     const header = this.setHeader();
     return this.http.get<data[]>(
-      `api/userdata/allData?filter=${filter}&page=${page}`,
+      `api/userdata/allData?filter=${filter}&page=${page}&ord=${ord}`,
       { headers: header }
     );
   }

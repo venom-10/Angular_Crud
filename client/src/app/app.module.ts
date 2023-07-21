@@ -18,10 +18,19 @@ import { SearchComponent } from './partials/search/search.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PaginateButtonComponent } from './partials/paginate-button/paginate-button.component';
 import { StoreModule } from '@ngrx/store';
-import { userReducer } from './store/reducers/counter.reducer';
+import { userDataReducer, userReducer } from './store/reducers/counter.reducer';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { PaginateComponent } from './partials/paginate/paginate.component';
+import { TableComponent } from './components/table/table.component';
+import { MatTableModule } from '@angular/material/table';
+import { PageEvent } from '@angular/material/paginator';
+import { JsonPipe } from '@angular/common';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -40,15 +49,25 @@ import { PaginateComponent } from './partials/paginate/paginate.component';
     SearchComponent,
     PaginateButtonComponent,
     PaginateComponent,
+    TableComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({user:userReducer}),
-    BrowserAnimationsModule, 
-    MatPaginatorModule
+    StoreModule.forRoot({ user: userReducer }),
+    StoreModule.forRoot({dataStore:userDataReducer}) ,
+    BrowserAnimationsModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatSlideToggleModule,
+    MatPaginatorModule,
+    JsonPipe,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent],
