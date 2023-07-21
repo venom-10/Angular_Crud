@@ -17,6 +17,12 @@ import { ManipulateNavComponent } from './partials/manipulate-nav/manipulate-nav
 import { SearchComponent } from './partials/search/search.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PaginateButtonComponent } from './partials/paginate-button/paginate-button.component';
+import { StoreModule } from '@ngrx/store';
+import { userReducer } from './store/reducers/counter.reducer';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { PaginateComponent } from './partials/paginate/paginate.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,12 +39,16 @@ import { PaginateButtonComponent } from './partials/paginate-button/paginate-but
     ManipulateNavComponent,
     SearchComponent,
     PaginateButtonComponent,
+    PaginateComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    StoreModule.forRoot({user:userReducer}),
+    BrowserAnimationsModule, 
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent],

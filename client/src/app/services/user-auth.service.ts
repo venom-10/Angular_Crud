@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -12,5 +12,9 @@ export class UserAuthService {
   }
   login(loginUser: any) {
     return this.http.post<object>('api/user/login', loginUser);
+  }
+  getUserData() {
+    const header = new HttpHeaders({ token: localStorage.getItem('__token') ?? 'none' })
+    return this.http.get<object>('api/user/userDetails', {headers:header});
   }
 }

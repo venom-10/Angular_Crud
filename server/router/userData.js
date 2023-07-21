@@ -149,9 +149,3 @@ module.exports = router;
 
 
 
-
-
-// const sharp = require('sharp');
-
-
-// sharp('public/images/default.png').resize(420).toFile('public/thumbnail/hello5.png')
